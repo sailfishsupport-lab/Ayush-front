@@ -1,5 +1,4 @@
-// api/api.js
-const API_BASE_URL = "https://sailfish-backend.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 async function sendDataToServer(endpoint, data) {
     try {
@@ -15,3 +14,4 @@ async function sendDataToServer(endpoint, data) {
         return { success: false, message: "Server unreachable." };
     }
 }
+
