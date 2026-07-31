@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password | Sailfish</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #1a2a35, #0b0e11);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
+        .forgot-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        h2 { margin-bottom: 10px; font-weight: 300; }
+        p { font-size: 13px; color: #aaa; margin-bottom: 25px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #00d4ff, #0077ff);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error { color: #ff4d4d; font-size: 12px; margin-top: 10px; }
+        .back-link { margin-top: 20px; font-size: 13px; }
+        a { color: #00d4ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="forgot-card">
+        <h2>Reset Password</h2>
+        <p>Enter your Email or Number to receive a reset code.</p>
+        
+        <form id="forgotForm">
+            <input type="text" id="contact" placeholder="Email or Mobile Number" required>
+            <div id="errorMsg" class="error"></div>
+            <button type="submit">Send Code</button>
+        </form>
+        
+        <div class="back-link">
+            <a href="login.html">Back to Login</a>
+        </div>
+    </div>
+
+    <script src="APIs/api.js"></script>
+    <script src="forgot.js"></script>
+</body>
+</html>
