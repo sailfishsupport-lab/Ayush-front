@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sailfish - Premium Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #12171a, #1c2429);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background: rgba(18, 23, 26, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        /* Pure CSS Exact Match for Sailfish Circular Shield */
+        .sailfish-shield {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px dashed #00e5ff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        /* The Sleek Curved Fin Graphic Inside the Shield */
+        .sailfish-shield::after {
+            content: '';
+            width: 12px;
+            height: 24px;
+            background: #00e5ff;
+            border-radius: 0 100% 0 100%;
+            transform: rotate(-15deg);
+            box-shadow: 0 0 12px #00e5ff;
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-title {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .main-title span {
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+        }
+
+        .sub-title {
+            color: #65727d;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        #app-content {
+            width: 100%;
+            height: auto;
+            min-height: calc(100vh - 90px);
+            margin-top: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            width: 100%;
+            padding: 15px;
+            background: #0d1114;
+            text-align: center;
+            color: #65727d;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container" onclick="loadPage('welcome.html')">
+            <div class="sailfish-shield"></div>
+            <div class="text-block">
+                <div class="main-title">Sail<span>fish</span></div>
+                <div class="sub-title">Premium Services</div>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-content"></main>
+
+    <footer>
+        &copy; 2026 Sailfish Ecosystem. All Rights Reserved.
+    </footer>
+
+    <script>
+        async function loadPage(pageName) {
+            const contentBox = document.getElementById('app-content');
+            try {
+                const response = await fetch(pageName);
+                if (!response.ok) throw new Error("Component Missing");
+                
+                const htmlContent = await response.text();
+                contentBox.innerHTML = htmlContent;
+            } catch (err) {
+                contentBox.innerHTML = `
+                    <div style="text-align:center; padding: 40px;">
+                        <h2 style="color:#ff4c4c;">Gateway Route Missing</h2>
+                        <p style="color:#8892b0; margin-top:10px;">File status error or configuration mismatch.</p>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage('welcome.html');
+        });
+
+        window.processSecureHandshake = async function() {
+            const alertPanel = document.getElementById('securityAlert');
+            const submitBtn = document.getElementById('authTriggerBtn');
+            const identityEl = document.getElementById('authIdentity');
+            const credentialEl = document.getElementById('authCredential');
+
+            if (!identityEl || !credentialEl) return;
+
+            const identity = identityEl.value.trim();
+            const credential = credentialEl.value.trim();
+
+            if (!identity || !credential) {
+                if (alertPanel) {
+                    alertPanel.textContent = "Please fill out all credentials.";
+                    alertPanel.style.backgroundColor = "rgba(255, 76, 76, 0.1)";
+                    alertPanel.style.border = "1px solid rgba(255, 76, 76, 0.2)";
+                    alertPanel.style.color = "#ff4c4c";
+                    alertPanel.style.display = "block";
+                }
+                return;
+            }
+
+            const sanitizedIdentity = identity.replace(/['"`;()]/g, "");
+            const sanitizedCredential = credential.replace(/['"`;()]/g, "");
+
+            try {
+                if (submitBtn) submitBtn.disabled = true;
+                if (alertPanel) alertPanel.style.display = "none";
+
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: sanitizedIdentity, password: sanitizedCredential })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.message === "Success") {
+                    localStorage.setItem('userSessionPhone', data.user.phone);
+                    localStorage.setItem('userSessionRole', data.user.role);
+                    loadPage('otp.html');
+                } else {
+                    if (alertPanel) {
+                        alertPanel.textContent = data.message || "Incorrect credentials.";
+                        alertPanel.style.backgroundColor = "rgba(255, 76, 76, 0.1)";
+                        alertPanel.style.border = "1px solid rgba(255, 76, 76, 0.2)";
+                        alertPanel.style.color = "#ff4c4c";
+                        alertPanel.style.display = "block";
+                    }
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            } catch (err) {
+                if (alertPanel) {
+                    alertPanel.textContent = "Security Handshake Failed. Connection refused.";
+                    alertPanel.style.display = "block";
+                }
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

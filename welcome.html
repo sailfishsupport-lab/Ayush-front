@@ -1,0 +1,69 @@
+<div class="welcome-box" style="text-align: center;">
+    
+    <style>
+        /* Sirf is page ke liye unique animations */
+        .animate-fade-down {
+            animation: fadeDown 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 1s ease-out forwards;
+            animation-delay: 0.4s; /* Button text ke thoda baad aayega */
+            opacity: 0;
+        }
+
+        /* Keyframes standard definition */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Button Hover Effect */
+        .glow-btn {
+            display: inline-block; 
+            padding: 16px 45px; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #12171a; 
+            background-color: #00e5ff; 
+            border: none; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3); 
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.6);
+        }
+    </style>
+
+    <h1 class="animate-fade-down" style="font-size: 3.5rem; font-weight: 800; margin-bottom: 30px; background: linear-gradient(to right, #ffffff, #a0aab2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1px;">
+        Welcome to Sailfish
+    </h1>
+    
+    <div class="animate-fade-up">
+        <button class="glow-btn" onclick="loadPage('about.html')">
+            Get Started
+        </button>
+    </div>
+    
+</div>

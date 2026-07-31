@@ -1,0 +1,182 @@
+<div style="width: 100%; max-height: calc(100vh - 100px); overflow-y: auto; padding: 20px; box-sizing: border-box;">
+    <style>
+        .dash-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 25px;
+            background: rgba(18, 23, 26, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+        }
+        .dash-header {
+            border-bottom: 2px solid rgba(0, 229, 255, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .role-badge {
+            background: #00e5ff;
+            color: #12171a;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Two Column Layout for Categories */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .category-section {
+            background: rgba(10, 14, 17, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .category-section h3 {
+            color: #00e5ff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .category-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .category-table th {
+            background: rgba(0, 229, 255, 0.05);
+            color: #8892b0;
+            text-align: left;
+            padding: 12px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .category-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+        .category-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .action-btn {
+            background: transparent;
+            border: 1px solid #00e5ff;
+            color: #00e5ff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .action-btn:hover {
+            background: #00e5ff;
+            color: #12171a;
+        }
+    </style>
+
+    <div class="dash-container">
+        <div class="dash-header">
+            <h2>Welcome to Ecosystem Control</h2>
+            <div id="userRoleBadge" class="role-badge">Loading Panel...</div>
+        </div>
+
+        <div id="dynamicDashboardContent"></div>
+    </div>
+
+    <script>
+        (function() {
+            const currentRole = localStorage.getItem('userSessionRole') || 'user';
+            const badge = document.getElementById('userRoleBadge');
+            const targetContainer = document.getElementById('dynamicDashboardContent');
+
+            badge.textContent = currentRole + " Dashboard";
+
+            if (currentRole === 'user') {
+                targetContainer.innerHTML = `
+                    <div class="dashboard-grid">
+                        
+                        <div class="category-section">
+                            <h3>Product Category</h3>
+                            <table class="category-table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Category Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Food</td><td><button class="action-btn">View</button></td></tr>
+                                    <tr><td>2</td><td>Grocery</td><td><button class="action-btn">View</button></td></tr>
+                                    <tr><td>3</td><td>Electronics</td><td><button class="action-btn">View</button></td></tr>
+                                    <tr><td>4</td><td>Online Courses</td><td><button class="action-btn">View</button></td></tr>
+                                    <tr><td>5</td><td>Books</td><td><button class="action-btn">View</button></td></tr>
+                                    <tr><td>6</td><td>Cloths</td><td><button class="action-btn">View</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="category-section">
+                            <h3>Worker Category</h3>
+                            <table class="category-table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Service Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>Electrician</td><td><button class="action-btn">Hire</button></td></tr>
+                                    <tr><td>2</td><td>Plumber</td><td><button class="action-btn">Hire</button></td></tr>
+                                    <tr><td>3</td><td>Carpenter</td><td><button class="action-btn">Hire</button></td></tr>
+                                    <tr><td>4</td><td>Home Cleaning</td><td><button class="action-btn">Hire</button></td></tr>
+                                    <tr><td>5</td><td>Appliance Repair</td><td><button class="action-btn">Hire</button></td></tr>
+                                    <tr><td>6</td><td>Painter</td><td><button class="action-btn">Hire</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                `;
+            } 
+            else if (currentRole === 'vendor') {
+                targetContainer.innerHTML = `
+                    <div style="padding: 20px; border-left: 4px solid #ffaa00; background: rgba(255,170,0,0.05);">
+                        <h3 style="color: #ffaa00;">Vendor Business Terminal</h3>
+                        <p style="color: #8892b0; margin-top: 10px;">Yahan se aap apne products stock inventory, orders list aur store timings ko manage kar sakte hain.</p>
+                    </div>
+                `;
+            } 
+            else if (currentRole === 'partner') {
+                targetContainer.innerHTML = `
+                    <div style="padding: 20px; border-left: 4px solid #a855f7; background: rgba(168,85,247,0.05);">
+                        <h3 style="color: #a855f7;">Partner Network Portal</h3>
+                        <p style="color: #8892b0; margin-top: 10px;">Yahan se aap affiliate earnings, overall service analytics aur network logs dekh sakte hain.</p>
+                    </div>
+                `;
+            }
+        })();
+    </script>
+</div>

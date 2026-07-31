@@ -1,0 +1,90 @@
+<!-- Main Scrollable Wrapper -->
+<div style="width: 100%; max-height: calc(100vh - 170px); overflow-y: auto; padding: 20px 15px; box-sizing: border-box; -webkit-overflow-scrolling: touch;">
+    
+    <!-- CSS Animations Styles Inside the file -->
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Smooth glow effect on cards */
+        .animated-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            padding: 30px 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0; /* Base state before animation starts */
+        }
+    </style>
+
+    <div style="max-width: 500px; width: 100%; text-align: center; margin: 0 auto; padding-bottom: 40px;">
+        
+        <!-- Title & Intro (Animates First) -->
+        <div style="animation: fadeInUp 0.6s ease forwards;">
+            <h2 style="font-size: 2.3rem; font-weight: 800; color: #00e5ff; margin-bottom: 15px; letter-spacing: 0.5px;">
+                About Sailfish
+            </h2>
+            <p style="color: #a0aab2; font-size: 1.05rem; line-height: 1.6; margin-bottom: 40px;">
+                Sailfish is a next-generation platform designed to bring premium automated services directly to your fingertips. Built on transparency, speed, and premium execution, we transform how the ecosystem functions.
+            </p>
+            
+            <h3 style="font-size: 1.5rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; color: #ffffff; font-weight: 800;">
+                THE DYNAMIC FOUNDERS
+            </h3>
+            <p style="color: #8892b0; margin-bottom: 35px; font-size: 0.95rem; line-height: 1.5;">
+                The spark of Sailfish ignited when two visionary minds synchronized to create a seamless balance of technology and operations.
+            </p>
+        </div>
+
+        <!-- Founders Container (Sequential Animations) -->
+        <div style="display: flex; flex-direction: column; gap: 25px; text-align: left; margin-bottom: 40px;">
+            
+            <!-- Founder 1: Ayush Thakur -->
+            <div class="animated-card" style="animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;">
+                <div style="color: #00e5ff; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">FOUNDER</div>
+                <h4 style="color: #ffffff; font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px;">Ayush Thakur</h4>
+                <p style="color: #8892b0; font-size: 0.95rem; line-height: 1.6;">
+                    The tech innovator and core dynamic strategist. Ayush envisioned an ecosystem where automation smoothly handles operations with zero friction.
+                </p>
+            </div>
+
+            <!-- Founder 2: Shivay Srivastava -->
+            <div class="animated-card" style="animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;">
+                <div style="color: #00e5ff; font-size: 0.8rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">FOUNDER</div>
+                <h4 style="color: #ffffff; font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px;">Shivay Srivastava</h4>
+                <p style="color: #8892b0; font-size: 0.95rem; line-height: 1.6;">
+                    The operational maestro and creative architect. Shivay brought execution clarity to ensure service standards map flawlessly with user demands.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Continue Button (Animates last with a smooth entry) -->
+        <div style="opacity: 0; animation: fadeInUp 0.5s ease 0.7s forwards;">
+           <button onclick="window.location.href='../login/login.html'" style="display: inline-block; padding: 15px 45px; font-size: 1.1rem; font-weight: 600; color: #12171a; background-color: #00e5ff; border: none; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3); letter-spacing: 0.5px; margin-bottom: 20px;">
+    Continue to Login
+</button>
+
+        </div>
+        
+    </div>
+</div>

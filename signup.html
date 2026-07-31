@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Sailfish</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #1a2a35, #0b0e11);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        h2 { margin-bottom: 25px; font-weight: 300; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #00d4ff, #0077ff);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error { color: #ff4d4d; font-size: 12px; margin-top: 10px; }
+        
+        .extra-links { margin-top: 20px; font-size: 13px; }
+        a { color: #00d4ff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <h2>Join Sailfish</h2>
+        <form id="signupForm">
+            <input type="text" id="username" placeholder="Email or Mobile Number" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            
+            <div id="errorMsg" class="error"></div>
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <div class="extra-links">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Ab path direct root folder se hai -->
+    <script src="APIs/api.js"></script>
+    <script src="signup.js"></script>
+
+</body>
+</html>

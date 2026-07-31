@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sailfish Premium</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #1a2a35, #0b0e11);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        h2 { margin-bottom: 25px; font-weight: 300; letter-spacing: 1px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(90deg, #00d4ff, #0077ff);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 15px #00d4ff;
+        }
+
+        .error { color: #ff4d4d; font-size: 12px; margin-top: 10px; }
+        
+        .extra-links { margin-top: 20px; font-size: 13px; display: flex; flex-direction: column; gap: 10px; }
+        a { color: #00d4ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Welcome into the Sailfish</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            
+            <div style="position: relative; width: 100%;">
+                <input type="password" id="password" placeholder="Password" required style="padding-right: 60px;">
+                <span id="togglePassword" style="position: absolute; right: 10px; top: 22px; cursor: pointer; color: #00d4ff; font-size: 10px; font-weight: bold;">SHOW</span>
+            </div>
+            
+            <div id="errorMsg" class="error"></div>
+            <button type="submit">Verify & Proceed</button>
+        </form>
+        
+        <div class="extra-links">
+            <a href="forgot-password.html">Forgot Password?</a>
+            <p>New to Ecosystem? <a href="signup.html">Create Account</a></p>
+        </div>
+    </div>
+
+    <script src="username.js"></script>
+    <script src="APIs/api.js"></script>
+    <script src="login.js"></script>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.innerText = (type === 'password') ? 'SHOW' : 'HIDE';
+        });
+    </script>
+    
+</body>
+</html>
